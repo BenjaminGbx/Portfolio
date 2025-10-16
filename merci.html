@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Merci pour votre message</title>
+
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #1e1f23;
+        color: #ffffff;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        text-align: center;
+      }
+
+      .content {
+        max-width: 800px;
+        width: 90%;
+        padding: 2rem;
+        opacity: 1;
+        animation: fadeInUp 1s ease-out forwards;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      p.note {
+        margin-bottom: 1.5rem;
+        opacity: 0.85;
+      }
+
+      .button.primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.9rem 2rem;
+        font-size: 1rem;
+        border-radius: 6px;
+        text-decoration: none;
+        cursor: pointer;
+        background-color: #6c63ff; /* fallback */
+        color: #fff;
+        border: none;
+        transition: background 0.3s ease;
+      }
+
+      .button.primary:hover {
+        background-color: #7d74ff;
+      }
+
+      .countdown {
+        margin-top: 1rem;
+        font-size: 0.95rem;
+        opacity: 0.85;
+      }
+    </style>
+  </head>
+
+  <body class="is-preload">
+    <div class="content">
+      <h1>Merci pour votre message.</h1>
+      <p class="note">Je vous répondrai dans les meilleurs délais.</p>
+
+      <a id="returnBtn" href="index.html" class="button primary">
+        Retour au portfolio
+      </a>
+
+      <div class="countdown">Redirection automatique dans <strong id="secs">10</strong> s…</div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const redirectUrl = "https://benjamingbx-portfolio.vercel.app/";
+        const secsEl = document.getElementById("secs");
+        let secs = 10;
+
+        const timer = setInterval(() => {
+          secs--;
+          if (secs <= 0) {
+            clearInterval(timer);
+            window.location.href = redirectUrl;
+          } else {
+            secsEl.textContent = secs;
+          }
+        }, 1000);
+
+        // Si l’utilisateur clique sur le bouton, on annule la redirection
+        document.getElementById("returnBtn").addEventListener("click", () => {
+          clearInterval(timer);
+        });
+      });
+    </script>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
